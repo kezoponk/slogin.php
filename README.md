@@ -3,7 +3,7 @@
   <strong>Secure login with csrf token, secure php password hashing, SQL injection and brute force immune</strong>
 </p>
 
-[Static](slogin.php/README.md#configurable)
+[Static](README.md#configurable)
 [CONFIGURABLE](#configurable)  
 
 [STATIC](#static)  
