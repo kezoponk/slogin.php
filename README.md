@@ -3,7 +3,7 @@
   <strong>Secure login with csrf token, secure php password hashing, SQL injection and brute force immune</strong>
 </p>
 
-### Setup
+## Setup
 You need to enter these values in the "*Credentials*" class before using
 
 | Variable | Description |
