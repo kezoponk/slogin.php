@@ -1,2 +1,22 @@
 # SLogin.php
 Secure login with csrf token, secure php password hashing, and SQL injection immune
+
+### Setup
+
+
+<br>
+
+## Example:
+
+```html
+<?php include('SLogin.php') ?>
+<html>
+...
+<form method="post">
+  <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
+  
+  <input type="text" name="email_username" placeholder=" Username ">
+  <input type="password" name="password"  placeholder=" Password ">
+  <button type="submit" name="login_user"> Login </button>
+</form>
+```
