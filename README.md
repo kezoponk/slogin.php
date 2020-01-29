@@ -6,7 +6,7 @@
 [Configurable](#Static)  
 [Static](#Static)  
 
-# Configurable
+## Configurable
 
 #### Setup
 The login or register needs to be initalized this exact way: <br>
@@ -62,7 +62,7 @@ For register: <code>$SRegister = new SLogin......</code> <br>
 
 <br>
 
-## Register
+### Register
 ```html
 <?php include('SLogin.php') ?>
 <html>
@@ -86,9 +86,9 @@ For register: <code>$SRegister = new SLogin......</code> <br>
 <br>
 <br>
 
-# Static
+## Static
 
-## Setup
+#### Setup
 You need to enter these values in the "*Credentials*" class before using
 
 | Variable | Description |
