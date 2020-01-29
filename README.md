@@ -1,10 +1,13 @@
 # SLogin.php
 <p align="center"><br>
   <strong>Secure login with csrf token, secure php password hashing, SQL injection and brute force immune</strong>
-</p>
-
+  
 [Configurable](#Static)  
 [Static](#Static)  
+  
+</p>
+
+
 
 ## Configurable
 
