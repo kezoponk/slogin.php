@@ -30,7 +30,7 @@ You need to enter these values in the "Credentials" class before using
 </form>
 ```
 
-<div align="center>
+<div align="center">
 | Element Name | Used For |
 | --- | --- |
 | `token` | CSRF Token for brute force protection |
@@ -57,7 +57,7 @@ You need to enter these values in the "Credentials" class before using
 
 | Element Name | Used For |
 | --- | --- |
-| `username` | Desired username, has to be unique |
+| `          username          ` | Desired username, has to be unique |
 | `email` | Users email, has to be unique |
 | `password_1 & password_2` | Inputs containing the desired password |
 | `register_user` | Submit button for post register |
