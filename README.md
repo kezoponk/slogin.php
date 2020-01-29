@@ -3,11 +3,93 @@
   <strong>Secure login with csrf token, secure php password hashing, SQL injection and brute force immune</strong>
 </p>
 
-[Static](README.md#configurable)
-[CONFIGURABLE](#configurable)  
+[Configurable](#Static)  
+[Static](#Static)  
 
-[STATIC](#Static)  
+# Configurable
 
+
+# Static
+
+## Setup
+The login or register needs to be initalized this exact way: <br>
+For login: <code>$SLogin = new SLogin......</code> <br>
+For register: <code>$SRegister = new SLogin......</code> <br>
+ "register", "users", "localhost", "root", "");
+#### Arguments
+>Arg 1 <br>
+>
+>> Variable of the array containing names of the user table columns
+>> And in register, containing element names in form
+>
+>Arg 2 <br>
+>Database containing users table
+>
+>Arg 3 <br>
+>Table containing all users
+>
+>Arg 4 <br>
+>Database host ( Example localhost or 127.0.0.1 )
+>
+>Arg 5 <br>
+>Database login ( Example root )
+>
+>Arg 6 <br>
+>Database password
+
+
+
+
+<br>
+
+## Login
+```html
+<?php include('SLogin.php') ?>
+<html>
+...
+<form method="post">
+  <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
+  
+  <input type="text" name="email_username" placeholder=" Username ">
+  <input type="password" name="password"  placeholder=" Password ">
+  <button type="submit" name="login_user"> Login </button>
+</form>
+```
+
+| Element Name | Used For |
+| --- | --- |
+| `token` | CSRF Token for brute force protection |
+| `email_username` | Input containing the email OR username of user |
+| `password` | Input containing user password |
+| `login_user` | Submit button for post login |
+
+<br>
+
+## Register
+```html
+<?php include('SLogin.php') ?>
+<html>
+...
+<form method="post">
+  <input type="text" name="username" placeholder=" Username ">
+  <input type="text" name="email" placeholder=" Email ">
+  <input type="text" name="password_1" placeholder=" Password ">
+  <input type="password" name="password_2"  placeholder=" Confirm password ">
+  <button type="submit" name="register_user"> Login </button>
+</form>
+```
+`#configurable` 
+| Element Name | Used For |
+| --- | --- |
+| `          username          ` | Desired username, has to be unique |
+| `email` | Users email, has to be unique |
+| `password_1 & password_2` | Inputs containing the desired password |
+| `register_user` | Submit button for post register |
+
+<br>
+<br>
+
+# Static
 
 ## Setup
 You need to enter these values in the "*Credentials*" class before using
@@ -64,6 +146,3 @@ You need to enter these values in the "*Credentials*" class before using
 | `email` | Users email, has to be unique |
 | `password_1 & password_2` | Inputs containing the desired password |
 | `register_user` | Submit button for post register |
-
-
-# Static
