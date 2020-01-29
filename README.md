@@ -8,18 +8,15 @@
 
 # Configurable
 
-
-# Static
-
-## Setup
+#### Setup
 The login or register needs to be initalized this exact way: <br>
 For login: <code>$SLogin = new SLogin......</code> <br>
 For register: <code>$SRegister = new SLogin......</code> <br>
- "register", "users", "localhost", "root", "");
+
 #### Arguments
 >Arg 1 <br>
 >
->> Variable of the array containing names of the user table columns
+>> Variable of the array containing names of the user table columns <br>
 >> And in register, containing element names in form
 >
 >Arg 2 <br>
