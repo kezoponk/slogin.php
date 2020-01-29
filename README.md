@@ -44,18 +44,18 @@ Register: <code>$SRegister = new SLogin......</code> <br>
 <html>
 ...
 <form method="post">
-  <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
+  <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>"> 
   
-  <input type="text" name="email_username" placeholder=" Username ">
-  <input type="password" name="password"  placeholder=" Password ">
+  <input type="text" name="username_or_email" placeholder=" Username "> <!-- name has to be username_or_email  -->
+  <input type="password" name="password"  placeholder=" Password ">     <!-- name has to be password  -->
   <button type="submit" name="login_user"> Login </button>
 </form>
 ```
 ```php
 $LOGIN = array(
-  "username", // Database table column containing username, Need to be username
-  "email",    // Need to be email
-  "password"  // Need to be password
+  "username", // Database table column containing username
+  "email",    
+  "password"  
 );
 
 $SLogin = new SLogin($LOGIN, "register", "users", "localhost", "root", "password");
