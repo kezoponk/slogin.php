@@ -1,6 +1,8 @@
 # SLogin.php
 <p align="center"><br>
+  
   **Secure login with csrf token, secure php password hashing, SQL injection and brute force immune**
+
 </p>
 
 ### Setup
