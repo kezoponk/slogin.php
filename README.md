@@ -29,6 +29,7 @@ You need to enter these values in the "Credentials" class before using
   <button type="submit" name="login_user"> Login </button>
 </form>
 ```
+
 <div align="center>
 | Element Name | Used For |
 | --- | --- |
@@ -36,6 +37,7 @@ You need to enter these values in the "Credentials" class before using
 | `email_username` | Input containing the email OR username of user |
 | `password` | Input containing user password |
 | `login_user` | Submit button for post login |
+
 </div>
 <br>
 
