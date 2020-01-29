@@ -6,7 +6,7 @@
 [Static](README.md#configurable)
 [CONFIGURABLE](#configurable)  
 
-[STATIC](#static)  
+[STATIC](#Static)  
 
 
 ## Setup
@@ -65,3 +65,5 @@ You need to enter these values in the "*Credentials*" class before using
 | `password_1 & password_2` | Inputs containing the desired password |
 | `register_user` | Submit button for post register |
 
+
+# Static
