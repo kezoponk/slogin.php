@@ -3,6 +3,7 @@ Secure login with csrf token, secure php password hashing, SQL injection and bru
 
 ### Setup
 You need to enter these values in the "Credentials" class before using
+
 | Variable | Description |
 | --- | --- |
 | `$dbname` | Database containing user table |
