@@ -56,7 +56,7 @@ You need to enter these values in the "*Credentials*" class before using
   <button type="submit" name="register_user"> Login </button>
 </form>
 ```
-`#real-cool-heading` 
+`#CONFIGURABLE` 
 | Element Name | Used For |
 | --- | --- |
 | `          username          ` | Desired username, has to be unique |
