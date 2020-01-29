@@ -1,10 +1,7 @@
 # SLogin.php
 <p align="center"><br>
-  <strong>Secure login with csrf token, secure php password hashing, SQL injection and brute force immune</strong>
-  
-[Configurable](#Static)  
-[Static](#Static)  
-  
+  <strong>Secure login with csrf token, secure php password hashing, SQL injection and brute force immune</strong> 
+  <a href="google.com"> g </a>
 </p>
 
 
