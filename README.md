@@ -52,6 +52,15 @@ For register: <code>$SRegister = new SLogin......</code> <br>
   <button type="submit" name="login_user"> Login </button>
 </form>
 ```
+```php
+$LOGIN = array(
+  "username", // Database table column containing username, Need to be username
+  "email",    // Need to be email
+  "password"  // Need to be password
+);
+
+$SLogin = new SLogin($LOGIN, "register", "users", "localhost", "root", "password");
+```
 
 | Element Name | Used For |
 | --- | --- |
@@ -62,25 +71,44 @@ For register: <code>$SRegister = new SLogin......</code> <br>
 
 <br>
 
-### Register
+## Register
 ```html
 <?php include('SLogin.php') ?>
 <html>
 ...
 <form method="post">
+  <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>"> <!-- REQUIRED -->
+  
   <input type="text" name="username" placeholder=" Username ">
   <input type="text" name="email" placeholder=" Email ">
-  <input type="text" name="password_1" placeholder=" Password ">
-  <input type="password" name="password_2"  placeholder=" Confirm password ">
+  
+  <input type="text" name="address" placeholder=" Address ">
+  <input type="text" name="postcode" placeholder=" Postcode ">
+  
+  <input type="text" name="password" placeholder=" Password ">
+  <input type="password" name="password_confirm" placeholder="Requires this exact name"> <!-- REQUIRED -->
   <button type="submit" name="register_user"> Login </button>
 </form>
 ```
-`#configurable` 
+```php
+// Element-name => Database-table-column-name
+
+$REGISTER = array(
+  "username" => "user", // Element name needs to be username
+  "email" => "mail",    // Element name needs to be email
+  "password" => "password", // Element name needs to be password
+  "address" => "location",
+  "postcode" => "postcode"
+);
+
+$SRegister = new SLogin($REGISTER, "register", "users", "localhost", "root", "password");
+```
+
 | Element Name | Used For |
 | --- | --- |
-| `          username          ` | Desired username, has to be unique |
+| `username` | Desired username, has to be unique |
 | `email` | Users email, has to be unique |
-| `password_1 & password_2` | Inputs containing the desired password |
+| `password & password_confirm` | Inputs containing the desired password, both are mandatory with these exact names |
 | `register_user` | Submit button for post register |
 
 <br>
