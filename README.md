@@ -6,10 +6,10 @@ You need to enter these values in the "Credentials" class before using
 
 | Variable | Description |
 | --- | --- |
-| `$dbname` | Database containing user table |
-| `$this->tablename` | Table containing all users |
-| `$hostname` | Database host url / address |
-| `$username and $password` | Entered database login credentials |
+| `$dbname` |         Database containing user table         |
+| `$this->tablename` |         Table containing all users         |
+| `$hostname` |         Database host url / address         |
+| `$username and $password` |         Entered database login credentials         |
 
 
 <br>
