@@ -2,6 +2,9 @@
 <p align="center"><br>
   <strong>Secure login with csrf token, secure php password hashing, SQL injection and brute force immune</strong>
 </p>
+[CONFIGURABLE](#configurable)  
+[STATIC](#static)  
+
 
 ## Setup
 You need to enter these values in the "*Credentials*" class before using
@@ -51,7 +54,7 @@ You need to enter these values in the "*Credentials*" class before using
   <button type="submit" name="register_user"> Login </button>
 </form>
 ```
-
+`#real-cool-heading` 
 | Element Name | Used For |
 | --- | --- |
 | `          username          ` | Desired username, has to be unique |
