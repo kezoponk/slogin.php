@@ -1,11 +1,8 @@
 # SLogin.php
 <p align="center"><br>
-  <strong>Secure login with csrf token, secure php password hashing, SQL injection and brute force immune</strong> 
-  <a href="#Static"> g </a>
+  <strong>Secure login with csrf token, secure php password hashing, SQL injection and brute force immune</strong> <br>
+  <a href="#Configurable"> Configurable </a> <a href="#Static"> Static </a>
 </p>
-
-[Configurable](#Configurable)  
-[Static](#Static) 
 
 
 ## Configurable
