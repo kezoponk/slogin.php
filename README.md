@@ -9,9 +9,9 @@
 ## Configurable
 
 #### Setup
-The login or register needs to be initalized this exact way: <br>
-For login: <code>$SLogin = new SLogin......</code> <br>
-For register: <code>$SRegister = new SLogin......</code> <br>
+The login and register are configured in middle of SLogin-CONFIGURABLE.php, line 133 <br>
+Login: <code>$SLogin = new SLogin......</code> <br>
+Register: <code>$SRegister = new SLogin......</code> <br>
 
 #### Arguments
 >Arg 1 <br>
