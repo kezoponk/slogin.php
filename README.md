@@ -1,5 +1,5 @@
 # SLogin.php
-Secure login with csrf token, secure php password hashing, and SQL injection immune
+Secure login with csrf token, secure php password hashing, SQL injection and brute force immune
 
 ### Setup
 | Variable | Description |
