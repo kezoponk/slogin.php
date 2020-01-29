@@ -4,7 +4,7 @@ Secure login with csrf token, secure php password hashing, SQL injection and bru
 </p>
 
 ### Setup
-You need to enter these values in the "Credentials" class before using
+You need to enter these values in the "*Credentials*" class before using
 
 | Variable | Description |
 | --- | --- |
@@ -12,7 +12,6 @@ You need to enter these values in the "Credentials" class before using
 | `$this->tablename` | Table containing all users |
 | `$hostname` | Database host url / address |
 | `$username and $password` | Entered database login credentials |
-
 
 <br>
 
