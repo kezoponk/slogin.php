@@ -4,19 +4,12 @@ Secure login with csrf token, secure php password hashing, and SQL injection imm
 ### Setup
 | Variable | Description |
 | --- | --- |
-| `$dbname` | Help: Display all available flags |
-| `-k` | Keep: Keep all captured packet files (deleted at end of session by default) |
-| `-a` | Alert: Turn off successful crack alert |
-| `-w <wordlist>` | Wordlist: Manually define a wordlist path (the script will prompt you otherwise) |
-| `-i <interface>` | Interface: Manually set Wi-Fi interface (script should normally auto-detect the correct interface) |
-| `-d <device>` | Device: Manually define 'devices' for hashcat |
+| `$dbname` | Database containing user table |
+| `$this->tablename` | Table containing all users |
+| `$hostname` | Database host url / address |
+| `$username and $password` | Entered database login credentials |
 
 
-       $dbname   = "register";
-$this->tablename = "users";
-       $hostname = "localhost";
-       $username = "root";
-       $password = "password";
 <br>
 
 ## Example:
