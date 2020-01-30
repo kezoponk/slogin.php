@@ -22,7 +22,6 @@ class SLogin {
       $_SESSION['failure'] = 'nodb';
       header('location: index.html');
     }
-
     // Connect form element to database column
     $this->columns = $columns;
   }
@@ -72,7 +71,6 @@ class Main {
         }
         $exists++;
       }
-
       // If password not correct
       $_SESSION['failure'] = "wrong";
 
@@ -81,7 +79,6 @@ class Main {
         $_SESSION['failure'] = "user_does_not_exist";
       }
     }
-
     // Only reached if something went wrong
     header('location: index.html');
   }
@@ -132,21 +129,19 @@ class Main {
 
 // CONFIGURE HERE
 
-// ElementName => Database-table-column-name
 $REGISTER = array(
-  "username" => "username",
-  "email" => "email",
-  "password" => "password"
+  "username" => "",
+  "email" => "",
+  "password" => ""
 );
 
 $SRegister = new SLogin($REGISTER, "register", "users", "localhost", "root", "");
 
 
-// LOGIN[0] = username database table column, LOGIN[1] = email database table column, LOGIN[2] = password database table column
 $LOGIN = array(
-  "username",
-  "email",
-  "password"
+  "", // Username column
+  "", // Email column
+  ""  // Password column
 );
 
 $SLogin = new SLogin($LOGIN, "register", "users", "localhost", "root", "");
@@ -221,6 +216,4 @@ if (isset($_POST['logout']) || $_GET['logout']) {
   unset($_SESSION['token'], $_SESSION['username'], $_SESSION['failure']);
   header('location: ../index.html');
 }
-
-
 ?>
