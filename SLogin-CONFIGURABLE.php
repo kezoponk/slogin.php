@@ -128,7 +128,6 @@ class Main {
 }
 
 // CONFIGURE HERE
-
 $REGISTER = array(
   "username" => "",
   "email" => "",
@@ -145,8 +144,7 @@ $LOGIN = array(
 );
 
 $SLogin = new SLogin($LOGIN, "register", "users", "localhost", "root", "");
-
-// CONFIGURE HERE
+// /CONFIGURE HERE
 
 
 // Register user
@@ -157,10 +155,10 @@ if (isset($_POST['register_user'])) {
   $values = ') VALUES (';
 
   // Fetch database credentials
-  $x = 0;
+  $index = 0;
   foreach($SRegister->columns as $elementName => $columnName) {
 
-    if($x != 0) {
+    if($index != 0) {
       // If not first iteration then add comma
       $inserts .= ",";
       $values .= ",";
@@ -169,12 +167,12 @@ if (isset($_POST['register_user'])) {
       $USERNAME_COLUMN = $columnName;
       $username = $_POST[$elementName];
     }
-    if($x == 1) {
+    if($index == 1) {
       // Second has to contain email
       $EMAIL_COLUMN = $columnName;
       $email = $_POST[$elementName];
     }
-    if($x == 2) {
+    if($index == 2) {
       // Third has to contain password
       // Encrypt password, more secure than md5
       $values .= '\''.password_hash($_POST[$elementName], PASSWORD_DEFAULT).'\'';
@@ -184,7 +182,7 @@ if (isset($_POST['register_user'])) {
     }
     // In which table column is the form data is supposed to go into:
     $inserts .= '`'.$columnName.'`';
-    $x++;
+    $index$++;
   }
   // Close the sql query
   $Query = $inserts.$values.')';
