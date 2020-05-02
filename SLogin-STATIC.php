@@ -152,7 +152,7 @@ if (isset($_POST['login_user'])) {
   }
 }
 // Logout with post form or get
-if (isset($_POST['logout']) || $_GET['logout']) {
+if (isset($_POST['logout']) || isset($_GET['logout'])) {
   unset($_SESSION['token'], $_SESSION['username'], $_SESSION['failure']);
   header('location: ../index.html');
 }
