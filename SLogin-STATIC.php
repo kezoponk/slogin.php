@@ -1,23 +1,22 @@
 <?php
-// Created by Albin Eriksson, https://github.com/kezoponk
-// MIT License, https://opensource.org/licenses/MIT
+// @author Albin Eriksson, https://github.com/kezoponk
+// @license MIT, https://opensource.org/licenses/MIT
 
 class Credentials {
-  function __construct() {
 
+  function __construct() {
     // Database credentials
-       $dbname   = "register";
-$this->tablename = "users";
-       $hostname = "localhost";
-       $username = "root";
-       $password = "password";
+    $dbname   = "DB-NAME";
+    $this->tablename = "DB-TABLENAME";
+    $hostname = "DB-HOST";
+    $username = "DB-USERNAME";
+    $password = "DB-PASSWORD";
 
     // Attempt database connection
     try {
       $this->database = new PDO("mysql:host=$hostname;dbname=$dbname;charset=utf8", $username, $password);
       $this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch(PDOException $e) {
-
       // If database connection failed
       $_SESSION['failure'] = 'nodb';
       header('location: index.html');
@@ -46,9 +45,7 @@ class SLogin {
     }
 
     if ($_SESSION['failure'] == "none") {
-
       $query = "SELECT * FROM $tablename WHERE (username='$email_username' OR email='$email_username')";
-
       $stmt = $database->prepare($query);
       $stmt->execute();
       $result = $stmt->fetchAll();
@@ -89,7 +86,6 @@ class SLogin {
     if ($password_1 != $password_2) {
       $_SESSION['failure'] = "password_nomatch";
     }
-
     // Check if username and email is not taken
     $user_check_query = "SELECT * FROM $tablename WHERE username='$username' OR email='$email' LIMIT 1";
     $result = mysqli_query($database, $user_check_query);
@@ -106,7 +102,6 @@ class SLogin {
     }
 
     if ($_SESSION['failure'] == "none") {
-
       // Encrypt password, more secure than md5
       $password = password_hash($password_1, PASSWORD_DEFAULT);
 
@@ -120,7 +115,7 @@ class SLogin {
       // Assign username variable to entered username
       $_SESSION['username'] = $username;
     }
-    header('location: index.html');
+    header('location: ../index.html');
   }
 }
 
@@ -136,11 +131,11 @@ if (isset($_POST['register_user'])) {
 
 // Login user
 if (isset($_POST['login_user'])) {
+  // Validate csrf token before attempting login
   if($_SESSION['token'] != $_POST['token']) {
     $_SESSION['failure'] = "invalid_csrf";
-    header('location: index.html');
+    header('location: ../index.html');
   } else {
-
     // Fetch database credentials
     $credentials = new Credentials();
 
