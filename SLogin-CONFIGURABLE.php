@@ -1,6 +1,6 @@
 <?php
-// Created by Albin Eriksson, https://github.com/kezoponk
-// MIT License, https://opensource.org/licenses/MIT
+// @author Albin Eriksson, https://github.com/kezoponk
+// @license MIT, https://opensource.org/licenses/MIT
 
 class SLogin {
 
@@ -133,18 +133,14 @@ $REGISTER = array(
   "email" => "",
   "password" => ""
 );
-
 $SRegister = new SLogin($REGISTER, "register", "users", "localhost", "root", "");
-
 
 $LOGIN = array(
   "", // Username column
   "", // Email column
   ""  // Password column
 );
-
 $SLogin = new SLogin($LOGIN, "register", "users", "localhost", "root", "");
-// /CONFIGURE HERE
 
 
 // Register user
@@ -189,7 +185,6 @@ if (isset($_POST['register_user'])) {
 
   $main = new Main();
   $main->Register($username, $email, $_POST['password'], $_POST['password_confirm'], $USERNAME_COLUMN, $EMAIL_COLUMN, $Query, $SRegister);
-
 }
 
 // Login user
@@ -198,7 +193,6 @@ if (isset($_POST['login_user'])) {
     $_SESSION['failure'] = "invalid_csrf";
     header('location: index.html');
   } else {
-
     // Generate new csrf token
     $_SESSION['token'] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32);
 
