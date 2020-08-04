@@ -1,4 +1,4 @@
-# SLogin.php
+# SLogin.php ![stability-stable](https://img.shields.io/badge/stability-stable-green.svg)
 <p align="center"><br>
   <strong>Secure login with csrf token, secure php password hashing & cross-site request forgery immune</strong> <br>
   <a href="#Configurable"> Configurable </a> | <a href="#Static"> Static </a>
