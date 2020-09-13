@@ -3,6 +3,7 @@
 // @license MIT, https://opensource.org/licenses/MIT
 
 class Credentials {
+  
   function __construct() {
     // Database credentials
     $dbname   = "register";
@@ -13,7 +14,7 @@ class Credentials {
 
     // Redirects
     $this->successRedirect = "../index.html";
-    $this->registrationExceptionRedirect = "../reg.html";
+    $this->registerExceptionRedirect = "../register.html";
     $this->loginExceptionRedirect = "../login.html";
 
     // Attempt database connection
@@ -33,6 +34,7 @@ if(!isset($_SESSION['token'])) { $_SESSION['token'] = substr(base_convert(sha1(u
 
 // Main class of SLogin
 class SLogin {
+
   function Login($email_username, $password, $credentials) {
     // Initialize error variable
     $_SESSION['failure'] = "none";
@@ -45,8 +47,8 @@ class SLogin {
     if (empty($password)) {
       $_SESSION['failure'] = "password_empty";
     }
-    
-    $query = "SELECT * FROM $credentials->tablename WHERE (username='?' OR email='?')";
+
+    $query = "SELECT * FROM $credentials->tablename WHERE (username=? OR email=?)";
     $stmt = $credentials->database->prepare($query);
     $stmt->execute(array($email_username, $email_username));
     $result = $stmt->fetchAll();
@@ -88,11 +90,12 @@ class SLogin {
       $_SESSION['failure'] = "password_nomatch";
     }
     // Check if username and email is not taken
-    $userCheckQuery = "SELECT * FROM $credentials->tablename WHERE username='$username' OR email='$email' LIMIT 1";
-    $result = mysqli_query($credentials->database, $userCheckQuery);
-    $user = mysqli_fetch_assoc($result);
+    $query = "SELECT * FROM $credentials->tablename WHERE username=? OR email=? LIMIT 1";
+    $stmt = $credentials->database->prepare($query);
+    $stmt->execute(array($username, $email));
+    $result = $stmt->fetchAll();
 
-    if ($user) { // If user already exists*
+    foreach($result as $user) {
       if ($user['username'] === $username) {
         $_SESSION['failure'] = "user_exists";
       }
@@ -106,7 +109,7 @@ class SLogin {
       // Encrypt password, more secure than md5
       $password = password_hash($password_1, PASSWORD_DEFAULT);
 
-      $query = "INSERT INTO $credentials->tablename (username, email, password)
+      $query = "INSERT INTO $credentials->tablename (`username`, `email`, `password`)
       VALUES('$username', '$email', '$password')";
 
       // Upload user to database/table
@@ -116,10 +119,12 @@ class SLogin {
       // Assign username variable to entered username
       $_SESSION['username'] = $username;
       header('location: '.$credentials->successRedirect);
+    } else {
+      header('location: '.$credentials->registerExceptionRedirect);
     }
-    header('location: '.$credentials->registerExceptionRedirect);
   }
 }
+
 // Register user
 if (isset($_POST['register_user'])) {
   // Fetch database credentials
@@ -145,6 +150,7 @@ if (isset($_POST['login_user'])) {
     $SLogin->Login($_POST['email_username'], $_POST['password'], $credentials);
   }
 }
+
 // Logout with post form or get
 if (isset($_POST['logout']) || isset($_GET['logout'])) {
   $credentials = new Credentials();
