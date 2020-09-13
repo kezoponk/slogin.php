@@ -48,10 +48,10 @@ class SLogin {
     if (empty($password)) {
       $_SESSION['failure'] = "password_empty";
     }
-
-    $query = "SELECT * FROM $credentials->tablename WHERE (username='$email_username' OR email='$email_username')";
+    
+    $query = "SELECT * FROM $credentials->tablename WHERE (username='?' OR email='?')";
     $stmt = $credentials->database->prepare($query);
-    $stmt->execute();
+    $stmt->execute(array($email_username, $email_username));
     $result = $stmt->fetchAll();
 
     // Get username and the hashed & salted password
