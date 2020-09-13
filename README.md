@@ -1,5 +1,5 @@
 # SLogin.php
-## BETA, MIGHT BE VULNERABLE TO SQL INJECTION DO NOT USE UNTIL FINISHED
+<h1> <strong> BETA, MIGHT BE VULNERABLE TO SQL INJECTION DO NOT USE UNTIL FINISHED </strong> </h1>
 <p align="center"><br>
   <strong>Secure login with csrf token, secure php password hashing & cross-site request forgery immune</strong> <br>
   <a href="#Configurable"> Configurable </a> | <a href="#Static"> Static </a>
