@@ -4,7 +4,7 @@
 </p>
 <br>
 
-#### Setup
+## Setup
 You need to enter these values in the "*Credentials*" class before using
 
 | Variable | Description |
