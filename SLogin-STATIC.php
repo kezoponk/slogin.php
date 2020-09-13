@@ -3,7 +3,6 @@
 // @license MIT, https://opensource.org/licenses/MIT
 
 class Credentials {
-
   function __construct() {
     // Database credentials
     $dbname   = "register";
@@ -29,13 +28,11 @@ class Credentials {
 }
 
 session_start();
-
 // Create csrf token
 if(!isset($_SESSION['token'])) { $_SESSION['token'] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32); }
 
 // Main class of SLogin
 class SLogin {
-
   function Login($email_username, $password, $credentials) {
     // Initialize error variable
     $_SESSION['failure'] = "none";
@@ -130,8 +127,8 @@ if (isset($_POST['register_user'])) {
 
   $SLogin = new SLogin();
   $SLogin->Register($_POST['username'], $_POST['email'], $_POST['password_1'], $_POST['password_2'], $credentials);
-
 }
+
 // Login user
 if (isset($_POST['login_user'])) {
   // Fetch database credentials
@@ -141,7 +138,6 @@ if (isset($_POST['login_user'])) {
     $_SESSION['failure'] = "invalid_csrf";
     header('location: '.$credentials->loginExceptionRedirect);
   } else {
-
     // Generate new csrf token
     $_SESSION['token'] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32);
 
