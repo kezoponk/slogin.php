@@ -1,14 +1,11 @@
 # SLogin.php
-<p align="center"><br><strong>
-  - Secure login with csrf token
-  - secure php password hashing, sql injection & cross-site request forgery immune
-</p></strong> <br>
-<br>
+- **Secure login with csrf token** 
+- **secure php password hashing** 
+- **sql injection & cross-site request forgery immune**
 
 ## Setup
 You need to enter these values in the "*Credentials*" class before using
-- a
--a
+
 | Variable | Description |
 | --- | --- |
 | `$dbname` | Database containing user table |
