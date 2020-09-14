@@ -1,6 +1,6 @@
 # SLogin.php
 <p align="center"><br>
-  <strong>Secure login with csrf token, secure php password hashing & cross-site request forgery immune</strong> <br>
+  <strong>Secure login with csrf token, secure php password hashing, sql injection & cross-site request forgery immune</strong> <br>
 </p>
 <br>
 
