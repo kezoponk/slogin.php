@@ -1,7 +1,7 @@
 # SLogin.php
-- **Secure login with csrf token** 
-- **secure php password hashing** 
-- **sql injection & cross-site request forgery immune**
+- **Csrf token** 
+- **Secure php password hashing with salt** 
+- **Sql Injection & Cross-site Request Forgery immune**
 
 ## Setup
 You need to enter these values in the "*Credentials*" class before using
