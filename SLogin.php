@@ -107,7 +107,7 @@ class SLogin {
 
     if ($_SESSION['failure'] == "none") {
       // Encrypt password, more secure than md5
-      $password = password_hash($password_1, PASSWORD_DEFAULT);
+      $password = password_hash($password_1, PASSWORD_BCRYPT);
 
       $query = "INSERT INTO $credentials->tablename (`username`, `email`, `password`)
       VALUES('$username', '$email', '$password')";
