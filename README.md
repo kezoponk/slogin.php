@@ -13,6 +13,18 @@ You need to enter these values in the "*Credentials*" class before using
 | `$hostname` | Database host url / address |
 | `$username and $password` | Entered database login credentials |
 
+| Error | Login or Register |
+| --- | --- |
+| `email_username_empty` | Both |
+| `password_empty` | Both |
+| `email_empty` | Both |
+| `username_empty` | Register |
+| `password_no_match` | Register |
+| `email_exists` | Register |
+| `username_exists` | Register |
+| `user_does_not_exist` | Login |
+| `wrong_password` | Login |
+| `invalid_csrf` | Login |
 <br>
 
 ## Login
