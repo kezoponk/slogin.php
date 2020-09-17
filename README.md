@@ -1,7 +1,7 @@
 # SLogin.php
-- **Csrf token** 
 - **Secure php password hashing with salt** 
-- **Sql Injection & Cross-site Request Forgery immune**
+- **Cross-site Request Forgery immune**
+- **Sql Injection
 
 ## Setup
 You need to enter these values in the "*Credentials*" class before using
@@ -12,6 +12,9 @@ You need to enter these values in the "*Credentials*" class before using
 | `$this->tablename` | Table containing all users |
 | `$hostname` | Database host url / address |
 | `$username and $password` | Entered database login credentials |
+
+## Errors
+Error is stored in <code>$_SESSION['failure']</code>
 
 | Error | Login or Register |
 | --- | --- |
@@ -34,16 +37,16 @@ You need to enter these values in the "*Credentials*" class before using
 ...
 <form method="post">
   <input type="hidden" name="token" value="<?php echo $_SESSION['token'] ?>">
-  <input type="text" name="email_username" placeholder=" Username ">
-  <input type="password" name="password"  placeholder=" Password ">
+  <input type="text" name="email_username" placeholder=" Username " required autofocus>
+  <input type="password" name="password"  placeholder=" Password " required>
   <button type="submit" name="login_user"> Login </button>
 </form>
 ```
 
 | Element Name | Used For |
 | --- | --- |
-| `token` | CSRF Token for brute force protection |
-| `email_username` | Input containing the email OR username of user |
+| `token` | CSRF Token for Cross-site Request Forgery protection |
+| `email_username` | Input containing the email **OR** username of user |
 | `password` | Input containing user password |
 | `login_user` | Submit button for post login |
 
@@ -55,17 +58,17 @@ You need to enter these values in the "*Credentials*" class before using
 <html>
 ...
 <form method="post">
-  <input type="text" name="username" placeholder=" Username ">
-  <input type="text" name="email" placeholder=" Email ">
-  <input type="password" name="password_1" placeholder=" Password ">
-  <input type="password" name="password_2"  placeholder=" Confirm password ">
+  <input type="text" name="username" placeholder=" Username " required autofocus>
+  <input type="text" name="email" placeholder=" Email " required>
+  <input type="password" name="password_1" placeholder=" Password " required>
+  <input type="password" name="password_2"  placeholder=" Confirm password " required>
   <button type="submit" name="register_user"> Login </button>
 </form>
 ```
 
 | Element Name | Used For |
 | --- | --- |
-| `          username          ` | Desired username, has to be unique |
+| `username` | Desired username, has to be unique |
 | `email` | Users email, has to be unique |
 | `password_1 & password_2` | Inputs containing the desired password |
 | `register_user` | Submit button for post register |
