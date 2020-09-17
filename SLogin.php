@@ -3,7 +3,6 @@
 // @license MIT, https://opensource.org/licenses/MIT
 
 class Credentials {
-
   function __construct() {
     // Database credentials
     $dbname   = 'register';
