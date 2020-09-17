@@ -28,7 +28,6 @@ Errors are stored in <code>$_SESSION['failure']</code>
 | `user_does_not_exist` | Login |
 | `wrong_password` | Login |
 | `invalid_csrf` | Login |
-<br>
 
 ## Examples
 ### Login
@@ -50,8 +49,6 @@ Errors are stored in <code>$_SESSION['failure']</code>
 | `email_username` | Input containing the email **OR** username of user |
 | `password` | Input containing user password |
 | `login_user` | Submit button for post login |
-
-<br>
 
 ### Register
 ```html
