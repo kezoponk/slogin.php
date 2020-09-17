@@ -4,10 +4,10 @@
 - **Sql Injection**
 
 ## Setup
-You need to enter these values in the "*Credentials*" class before using
-Database column names needs to be username, email, password
-Username is stored in <code>$_SESSION['username']</code>
+Database column names needs to be username, email, password<br>
+Username is stored in <code>$_SESSION['username']</code><br><br>
 
+You need to enter these values in the "**Credentials**" class before using
 | Variable | Description |
 | --- | --- |
 | `$dbname` | Database containing user table |
