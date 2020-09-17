@@ -14,7 +14,7 @@ You need to enter these values in the "*Credentials*" class before using
 | `$username and $password` | Entered database login credentials |
 
 ## Errors
-Error is stored in <code>$_SESSION['failure']</code>
+Errors are stored in <code>$_SESSION['failure']</code>
 
 | Error | Login or Register |
 | --- | --- |
@@ -30,7 +30,8 @@ Error is stored in <code>$_SESSION['failure']</code>
 | `invalid_csrf` | Login |
 <br>
 
-## Login
+## Examples
+- Login
 ```html
 <?php include('SLogin.php') ?>
 <html>
@@ -52,7 +53,7 @@ Error is stored in <code>$_SESSION['failure']</code>
 
 <br>
 
-## Register
+- Register
 ```html
 <?php include('SLogin.php') ?>
 <html>
