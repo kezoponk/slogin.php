@@ -50,6 +50,8 @@ Errors are stored in <code>$_SESSION['failure']</code>
 | `password` | Input containing user password |
 | `login_user` | Submit button for post login |
 
+___
+
 ### Register
 ```html
 <?php include('SLogin.php') ?>
