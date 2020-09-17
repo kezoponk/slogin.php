@@ -1,7 +1,8 @@
 <?php
-// @author Albin Eriksson, https://github.com/kezoponk
-// @license MIT, https://opensource.org/licenses/MIT
-
+/**
+ * @author Albin Eriksson, https://github.com/kezoponk
+ * @license MIT, https://opensource.org/licenses/MIT
+ */
 class Credentials {
   function __construct() {
     // Database credentials
