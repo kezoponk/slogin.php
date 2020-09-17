@@ -1,7 +1,7 @@
 # SLogin.php
 - **Secure php password hashing with salt** 
 - **Cross-site Request Forgery immune**
-- **Sql Injection
+- **Sql Injection**
 
 ## Setup
 You need to enter these values in the "*Credentials*" class before using
