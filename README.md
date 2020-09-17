@@ -31,7 +31,7 @@ Errors are stored in <code>$_SESSION['failure']</code>
 <br>
 
 ## Examples
-- Login
+### Login
 ```html
 <?php include('SLogin.php') ?>
 <html>
@@ -53,7 +53,7 @@ Errors are stored in <code>$_SESSION['failure']</code>
 
 <br>
 
-- Register
+### Register
 ```html
 <?php include('SLogin.php') ?>
 <html>
