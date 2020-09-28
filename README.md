@@ -1,7 +1,7 @@
 # SLogin.php
 - **Secure php password hashing with salt** 
 - **Cross-site Request Forgery immune**
-- **Sql Injection**
+- **Sql Injection immune**
 
 ## How
 Database column names needs to be username, email, password<br>
