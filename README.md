@@ -7,7 +7,7 @@
 Database column names needs to be username, email, password<br>
 Username is stored in <code>$_SESSION['username']</code><br>
 
-You need to enter these values in the **"Credentials" class** before using
+You need to enter these values in the **Credentials class** before using
 | Variable | Description |
 | --- | --- |
 | `$dbname` | Database containing user table |
