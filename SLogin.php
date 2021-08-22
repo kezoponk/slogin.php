@@ -1,42 +1,56 @@
 <?php
 // @author Albin Eriksson, https://github.com/kezoponk
 // @license MIT, https://opensource.org/licenses/MIT
-class Credentials {
-  function __construct() {
-    // Database credentials
-    $dbname   = 'register';
-    $this->tablename = 'users';
-    $hostname = 'localhost';
-    $username = 'root';
-    $password = '';
 
-    // Redirects
-    $this->successRedirect = '../index.html';
-    $this->registerExceptionRedirect = '../register.html';
-    $this->loginExceptionRedirect = '../login.html';
+session_start();
+// csrf token
+if(!isset($_SESSION['token'])) { $_SESSION['token'] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32); }
 
-    // Attempt database connection
+class SLogin {
+  // Database
+  private $dbname   = 'slogintest';
+  private $tablename = 'users';
+  private $hostname = '127.0.0.1';
+  private $username = 'root';
+  private $password = 'Necini26';
+  private $debug = TRUE;
+
+  // Redirects
+  public $successRedirect = '../index.html';
+  private $registerExceptionRedirect = '../register.html';
+  private $loginExceptionRedirect = '../login.html';
+
+
+  private function PDOConnection() : object {
     try {
-      $this->database = new PDO("mysql:host=$hostname;dbname=$dbname;charset=utf8", $username, $password);
-      $this->database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $database = new PDO("mysql:host=$this->hostname;dbname=$this->dbname;charset=utf8", $this->username, $this->password);
+
+      if ($this->debug) $database->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+      return $database;
+
     } catch(PDOException $e) {
-      // If database connection failed
       echo 'Database connection failed: <br>'.$e;
     }
   }
-}
 
-session_start();
-// Create csrf token
-if(!isset($_SESSION['token'])) { $_SESSION['token'] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32); }
+  private function validateCsrf() {
+    // Validate csrf token before attempting login
+    if($_SESSION['token'] != $_POST['token']) {
+      $_SESSION['failure'] = 'invalid_csrf';
+      header('location: '.$this->loginExceptionRedirect);
 
-// Main class of SLogin
-class SLogin {
+    } else {
+      // Generate new csrf token
+      $_SESSION['token'] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32);
+    }
+  }
 
-  function Login($email_username, $password, $credentials) {
+  public function Login($email_username, $password) {
     // Initialize error variable
     $_SESSION['failure'] = NULL;
-    $exists = 0;
+
+    $this->validateCsrf();
 
     // In case the form elements don't have the required attribute
     if (empty($email_username)) {
@@ -45,39 +59,49 @@ class SLogin {
     if (empty($password)) {
       $_SESSION['failure'] = 'password_empty';
     }
+    
+    $database = $this->PDOConnection();
 
-    $query = "SELECT * FROM $credentials->tablename WHERE (username=? OR email=?)";
-    $stmt = $credentials->database->prepare($query);
+    $query = "SELECT * FROM $this->tablename WHERE (username=? OR email=?)";
+
+    $stmt = $database->prepare($query);
+
     $stmt->execute(array($email_username, $email_username));
+
     $result = $stmt->fetchAll();
 
-    // Get username and the hashed & salted password
+    // Get username and the hash+salt password
     foreach($result as $row) {
+
       // Check if entered password is the same as database password
       if(password_verify($password, $row['password'])) {
         // Assign username variable as the users username contained in database
         $_SESSION['username'] = $row['username'];
       }
-      $exists++;
+      
     }
 
-    if($exists < 1) {
+
+    if(count($result) < 1) {
       // Check if user even exists
       $_SESSION['failure'] = 'user_does_not_exist';
+
     } else if(!isset($_SESSION['username'])) {
-      // If password not correct
+      // Will trigger only if password was incorrect
       $_SESSION['failure'] = 'wrong_password';
     }
 
+
     if (empty($_SESSION['failure'])) {
-      header('location: '.$credentials->successRedirect);
+      header('location: '.$this->successRedirect);
+
     } else {
       // If anything went wrong then redirect to entered exception redirect
-      header('location: '.$credentials->loginExceptionRedirect);
+      header('location: '.$this->loginExceptionRedirect);
     }
   }
 
-  function Register($username, $email, $password_1, $password_2, $credentials) {
+  public function Register($username, $email, $password_1, $password_2) {
     $_SESSION['failure'] = NULL;
 
     // Secure fields
@@ -87,10 +111,16 @@ class SLogin {
     if ($password_1 != $password_2) {
       $_SESSION['failure'] = 'password_no_match';
     }
+
     // Check if username and email is not taken
-    $query = "SELECT * FROM $credentials->tablename WHERE username=? OR email=? LIMIT 1";
-    $stmt = $credentials->database->prepare($query);
+    $database = $this->PDOConnection();
+    
+    $query = "SELECT * FROM $this->tablename WHERE username=? OR email=? LIMIT 1";
+
+    $stmt = $database->prepare($query);
+    
     $stmt->execute(array($username, $email));
+
     $result = $stmt->fetchAll();
 
     foreach($result as $user) {
@@ -107,52 +137,39 @@ class SLogin {
       // Encrypt password, more secure than md5
       $password = password_hash($password_1, PASSWORD_BCRYPT);
 
-      $query = "INSERT INTO $credentials->tablename (`username`, `email`, `password`)
-                VALUES('$username', '$email', '$password')";
+      $query = "INSERT INTO $this->tablename (`username`, `email`, `password`)
+                                                  VALUES(?, ?, ?)";
 
       // Upload user to database/table
-      $stmt = $credentials->database->prepare($query);
-      $stmt->execute();
+      $stmt = $database->prepare($query);
+      $stmt->execute(array($username, $email, $password));
 
       // Assign username variable to entered username
       $_SESSION['username'] = $username;
-      header('location: '.$credentials->successRedirect);
+      header('location: '.$this->successRedirect);
+      
     } else {
-      header('location: '.$credentials->registerExceptionRedirect);
+      header('location: '.$this->registerExceptionRedirect);
     }
   }
 }
 
 // Register user
 if (isset($_POST['register_user'])) {
-  // Fetch database credentials
-  $credentials = new Credentials();
-
   $SLogin = new SLogin();
-  $SLogin->Register($_POST['username'], $_POST['email'], $_POST['password_1'], $_POST['password_2'], $credentials);
+  $SLogin->Register($_POST['username'], $_POST['email'], $_POST['password_1'], $_POST['password_2']);
 }
 
 // Login user
 if (isset($_POST['login_user'])) {
-  // Fetch database credentials
-  $credentials = new Credentials();
-  // Validate csrf token before attempting login
-  if($_SESSION['token'] != $_POST['token']) {
-    $_SESSION['failure'] = 'invalid_csrf';
-    header('location: '.$credentials->loginExceptionRedirect);
-  } else {
-    // Generate new csrf token
-    $_SESSION['token'] = substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 32);
-
     $SLogin = new SLogin();
-    $SLogin->Login($_POST['email_username'], $_POST['password'], $credentials);
-  }
+    $SLogin->Login($_POST['email_username'], $_POST['password']);
 }
 
 // Logout with post form or get
 if (isset($_POST['logout']) || isset($_GET['logout'])) {
-  $credentials = new Credentials();
   unset($_SESSION['token'], $_SESSION['username'], $_SESSION['failure']);
-  header('location: '.$credentials->successRedirect);
+
+  $SLogin = new SLogin();
+  header('location: '.$SLogin->successRedirect);
 }
-?>
