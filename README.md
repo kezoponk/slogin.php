@@ -7,13 +7,18 @@
 Database column names needs to be username, email, password<br>
 Username is stored in <code>$_SESSION['username']</code><br>
 
-You need to enter these values in the **Credentials class** before using
+You need to enter these values in the top of SLogin class before use
 | Variable | Description |
 | --- | --- |
 | `$dbname` | Database containing user table |
-| `$this->tablename` | Table containing all users |
+| `$tablename` | Table containing all users |
 | `$hostname` | Database host url / address |
 | `$username and $password` | Entered database login credentials |
+| $successRedirect | 
+| $registerExceptionRedirect | 
+| $loginExceptionRedirect | 
+
+<br>
 
 ## Errors
 Errors are stored in <code>$_SESSION['failure']</code>
@@ -30,6 +35,8 @@ Errors are stored in <code>$_SESSION['failure']</code>
 | `user_does_not_exist` | Login |
 | `wrong_password` | Login |
 | `invalid_csrf` | Login |
+
+<br>
 
 ## Examples
 ### Login
@@ -52,7 +59,7 @@ Errors are stored in <code>$_SESSION['failure']</code>
 | `password` | Input containing user password |
 | `login_user` | Submit button for post login |
 
-___
+<br>
 
 ### Register
 ```html
@@ -64,7 +71,7 @@ ___
   <input type="text" name="email" placeholder=" Email " required>
   <input type="password" name="password_1" placeholder=" Password " required>
   <input type="password" name="password_2"  placeholder=" Confirm password " required>
-  <button type="submit" name="register_user"> Login </button>
+  <button type="submit" name="register_user"> Register </button>
 </form>
 ```
 
@@ -74,3 +81,6 @@ ___
 | `email` | Users email, has to be unique |
 | `password_1 & password_2` | Inputs containing the desired password |
 | `register_user` | Submit button for post register |
+
+<br><br><br>
+<p align="center">Made for classmates but I still make updates sometimes :)</p>
